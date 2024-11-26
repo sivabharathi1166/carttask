@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Amazon</title>
+    <link rel="stylesheet" href="./amazon.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+</head>
+<body>
+    <nav>
+        <a href="https://www.amazon.in/?tag=msndeskstdin-21&ref=pd_sl_3orom41q89_e&adgrpid=1315017564951826&hvadid=82188862025546&hvnetw=o&hvqmt=e&hvbmt=be&hvdev=c&hvlocint=&hvlocphy=143843&hvtargid=kwd-82189528081926:loc-90&hydadcr=14452_2334185">
+        <img src="C:\Users\SIVABHARATHI\OneDrive\Desktop\Amazon-Emblem.jpg" width="100" alt="">
+        </a>
+        <div class="nav-country">
+            <img src="C:\Users\SIVABHARATHI\OneDrive\Desktop\amazon lo.jpeg" height="20" alt="" >
+            <p>Deliver to</p>
+            <h1>India</h1>
+        </div>
+        <div class="nav-text">
+            <p>Hello sign in</p>
+            <h1>Account & Lists <img src="https://tse2.mm.bing.net/th?id=OIP.-nNvWLvx3MfEpdQM0iQjQQHaHa&pid=Api&P=0&h=180" width="8px" alt=""></h1>
+        </div>
+        <div class="nav-text">
+            <p>Return</p>
+            <h1>&Orders <img src="https://tse2.mm.bing.net/th?id=OIP.-nNvWLvx3MfEpdQM0iQjQQHaHa&pid=Api&P=0&h=180" width="8px" alt=""></h1>
+        </div>
+        <a href="" class="nav-cart">
+            <img src="https://tse2.mm.bing.net/th?id=OIP.1lLTsFT5hpiiQ2zK1AR4pAHaDt&pid=Api&P=0&h=180" width="60px" alt="">
+            <h4>Cart</h4>
+            <span id="cart-count" class="cart-count">0</span> 
+        </a>
+    </nav>
+
+    <div class="cart-container">
+        <h1>Your Shopping Cart</h1>
+
+       
+        <!-- <div class="cart-item">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.IYhT-B9pO29TiTSazyRTDAHaJu&pid=Api&P=0&h=180" alt="Apple iPhone 15">
+            <div class="cart-item-details">
+                <h3>Apple iPhone 15 (128GB) - Black</h3>
+                <p>Price: ₹77,900</p>
+                <p>Quantity: <input type="number" value="1" min="1" class="quantity"></p>
+                <button class="remove-item">Remove</button>
+            </div>
+        </div> -->
+
+        <div class="cart-item">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.IYhT-B9pO29TiTSazyRTDAHaJu&pid=Api&P=0&h=180" alt="Apple iPhone 15">
+            <div class="cart-item-details">
+                <h3>Apple iPhone 15 (128GB) - Black</h3>
+                <p>Price: ₹77,900</p>
+                <p>Quantity: <input type="number" value="0" min="10" class="quantity"></p>
+                <button class="remove-item">Remove</button>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <h3>Order Summary</h3>
+            <p>Total Items: <span id="total-items">2</span></p>
+            <p>Total Price: ₹<span id="total-price">155,800</span></p>
+            <button class="checkout">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const removeButtons = document.querySelectorAll('.remove-item');
+            const quantityInputs = document.querySelectorAll('.quantity');
+            const totalPrice = document.getElementById('total-price');
+            const totalItems = document.getElementById('total-items');
+            const cartCount = document.getElementById('cart-count');
+
+            let itemCount = 2; 
+            let itemPrice = 77900; 
+
+            
+            cartCount.textContent = itemCount;
+
+          
+            function updateCart() {
+                let total = 0;
+                let totalItemCount = 0;
+
+               
+                document.querySelectorAll('.cart-item').forEach((item, index) => {
+                    const quantity = item.querySelector('.quantity').value;
+                    totalItemCount += parseInt(quantity);
+                    total += quantity * itemPrice;
+                });
+
+               
+                totalPrice.textContent = total;
+                totalItems.textContent = totalItemCount;
+            }
+
+            
+            removeButtons.forEach((button, index) => {
+                button.addEventListener('click', function() {
+                    const cartItem = button.closest('.cart-item');
+                    cartItem.remove();
+                    itemCount--; 
+                    cartCount.textContent = itemCount;
+                    updateCart(); // 
+                });
+            });
+
+            
+            quantityInputs.forEach((input) => {
+                input.addEventListener('input', function() {
+                    updateCart(); 
+                });
+            });
+
+            
+            updateCart();
+        });
+    </script>
+</body>
+</html>
